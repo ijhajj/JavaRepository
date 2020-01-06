@@ -1,0 +1,76 @@
+package com.luv2code.hibernate.demo.entity;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+
+@Entity
+@Table(name="instructor_detail")
+public class InstructorDetail {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
+	private int Id;
+	
+	@Column(name="you_tube_channel")
+	private String youTubeChannel;
+	
+	@Column(name="hobby")
+	private String hobby;
+	
+	public InstructorDetail() {}
+	
+	public InstructorDetail(String you_tube_channel, String hobby) {
+		this.youTubeChannel = you_tube_channel;
+		this.hobby = hobby;
+	}
+	
+	@OneToOne(mappedBy="instructorDetail", cascade=CascadeType.ALL)
+	private Instructor instructor;
+	
+	public Instructor getInstructor() {
+		return instructor;
+	}
+
+	public void setInstructor(Instructor instructor) {
+		this.instructor = instructor;
+	}
+
+	public int getId() {
+		return Id;
+	}
+
+	public void setId(int id) {
+		Id = id;
+	}
+
+	public String getYou_tube_channel() {
+		return youTubeChannel;
+	}
+
+	public void setYou_tube_channel(String you_tube_channel) {
+		this.youTubeChannel = you_tube_channel;
+	}
+
+	public String getHobby() {
+		return hobby;
+	}
+
+	public void setHobby(String hobby) {
+		this.hobby = hobby;
+	}
+
+	@Override
+	public String toString() {
+		return "InstructorDetail [Id=" + Id + ", you_tube_channel=" + youTubeChannel + ", hobby=" + hobby + "]";
+	}
+	
+	
+
+}
